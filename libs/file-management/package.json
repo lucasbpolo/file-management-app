@@ -1,0 +1,12 @@
+{
+  "name": "@monorepo-app/file-management",
+  "version": "0.0.1",
+  "private": true,
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@monorepo-app/shared-data": "*",
+    "tslib": "^2.3.0"
+  }
+}

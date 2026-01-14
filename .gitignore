@@ -38,5 +38,11 @@ testem.log
 .DS_Store
 Thumbs.db
 
+.cursor
+.vscode
 .nx/cache
 .nx/workspace-data
+
+# Next.js
+.next
+out

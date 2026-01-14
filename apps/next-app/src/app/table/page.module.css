@@ -1,0 +1,22 @@
+.pageContainer {
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 2em;
+  font-weight: bold;
+}

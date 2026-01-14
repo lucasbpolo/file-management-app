@@ -1,0 +1,19 @@
+{
+  "name": "file-management",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/file-management/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/file-management",
+        "main": "libs/file-management/src/index.ts",
+        "tsConfig": "libs/file-management/tsconfig.lib.json",
+        "assets": ["libs/file-management/*.md"]
+      }
+    }
+  }
+}

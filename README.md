@@ -1,96 +1,233 @@
-# MonorepoApp
+# File Management Application
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+A clean architecture implementation using Nx with shared business logic consumed by a Next.js frontend application.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## Project Structure
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-
-## Run tasks
-
-To run tasks with Nx use:
-
-```sh
-npx nx <target> <project-name>
+```text
+.
+├── apps/
+│   └── next-app/          # Next.js application (presentation layer)
+├── libs/
+│   ├── shared-data/       # Data services and types (domain layer)
+│   └── file-management/   # Business logic library (clean architecture)
+│       ├── entities/      # Domain entities
+│       └── use-cases/     # Business use cases
+└── package.json
 ```
 
-For example:
+## Features
 
-```sh
-npx nx build myproject
+- **Clean Architecture**: Business logic separated in a shared library following Clean Architecture principles
+- **Streaming Data**: Server-sent events for efficient data loading
+- **Virtualized Tables**: High-performance rendering of hundreds of items
+- **Accessibility**: Full ARIA support and keyboard navigation
+- **Smart Selection**: Select-all with indeterminate state, disabled checkboxes for unavailable items
+- **Comprehensive Testing**: Unit tests for business logic and React components
+- **Separation of Concerns**: Business logic is framework-agnostic and reusable
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20+ (recommended) or >= 18.17.0
+- npm
+- nvm (Node Version Manager) - if you have multiple Node.js versions
+
+### Installation
+
+```bash
+npm install
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### Development
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
+```bash
+npm run start:next-app
 ```
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+Visit <http://localhost:3000>
 
-```sh
-# Generate an app
-npx nx g @nx/react:app demo
+### Building
 
-# Generate a library
-npx nx g @nx/react:lib some-lib
+Build all projects:
+
+```bash
+npm run build
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+Build individual projects:
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
+```bash
+npm run build:next-app
+npm run build:shared-data
+npm run build:file-management
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+### Production Server
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+After building, you can run the production server on a different port:
 
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
+```bash
+npm run start:next-app:prod
 ```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+This will start the production server on port 4000. Visit <http://localhost:4000>
 
-## Install Nx Console
+**Note**: Make sure you've run `npm run build` first to build all projects.
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+### Testing
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Run all tests:
 
-## Useful links
+```bash
+npm test
+```
 
-Learn more:
+Run specific test suites:
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```bash
+npm run test:shared-data
+npm run test:next-app
+npm run test:file-management
+```
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Application Features
+
+### File Table
+
+The application features:
+
+- **Virtualized List**: Efficient rendering of 500+ items using `@tanstack/react-virtual`
+- **Streaming Data**: Data loads incrementally via server-sent events
+- **Selection Controls**:
+  - Individual checkboxes for each row (only available items can be selected)
+  - Select-all checkbox with indeterminate state
+  - Selection count display
+- **Download Button**: Shows alert with path and device of selected items
+- **States**: Loading, error, and empty states with proper ARIA attributes
+- **Accessibility**: Full keyboard navigation, screen reader support, proper ARIA labels
+
+### Requirements Met
+
+✅ Only items with "available" status can be selected  
+✅ Select-all checkbox shows unselected/selected/indeterminate states  
+✅ Selection count updates dynamically  
+✅ Clicking select-all toggles all available items  
+✅ Download button shows alert with selected items' path and device  
+✅ Status correctly formatted  
+✅ Rows change color on selection and hover  
+✅ Virtualized list for performance  
+✅ Streaming data loading  
+✅ Comprehensive accessibility features
+
+## Architecture
+
+### Clean Architecture Layers
+
+The project follows Clean Architecture principles with clear separation of concerns:
+
+#### 1. **Domain Layer** (`libs/shared-data`)
+
+- Type definitions (`FileItem`, `FileStatus`)
+- Data services (`getData`, `getDataStream`)
+- Data generation (`generateMockData`)
+
+#### 2. **Business Logic Layer** (`libs/file-management`)
+
+- **Entities** (`entities/`):
+  - `SelectionState` - Selection state entity
+  - Re-exports `FileItem` from shared-data
+
+- **Use Cases** (`use-cases/`):
+  - `getAvailableItems` - Filters file items to only include available ones
+  - `getSelectionState` - Calculates selection state (all selected, some selected, count)
+  - `selectAllAvailable` - Toggles selection of all available items
+  - `toggleItemSelection` - Toggles selection of a single item
+  - `formatSelectedForDownload` - Formats selected items for download/export
+  - `getSelectedItems` - Gets the currently selected file items
+
+All use cases are:
+
+- Framework-agnostic (pure functions)
+- Fully unit tested
+- Reusable across different frontend frameworks
+
+#### 3. **Application Layer** (`apps/next-app`)
+
+- API routes (`app/api/data/route.ts`)
+- Custom hooks (`hooks/useFileData.ts`) - Data fetching and state management
+- Page components (`app/table/page.tsx`)
+
+#### 4. **Presentation Layer** (`apps/next-app`)
+
+- React components (`components/FileTable.tsx`) - Acts as an adapter
+- UI logic and user interactions
+- Styling and layout
+
+### Architecture Benefits
+
+- **Framework Independence**: Business logic can be used with React, Vue, Angular, or vanilla JavaScript
+- **Testability**: Use cases are pure functions, easy to unit test
+- **Reusability**: Same business logic can power multiple frontend applications
+- **Maintainability**: Business rules are centralized in one place
+- **Separation of Concerns**: Clear boundaries between layers
+
+## Testing
+
+### Business Logic Tests
+
+Located in `libs/file-management/src/use-cases/*.spec.ts`:
+
+- Tests for all use cases (selection, filtering, formatting)
+- Pure function testing (no framework dependencies)
+- 19+ unit tests covering all business logic
+
+Located in `libs/shared-data/src/lib/*.spec.ts`:
+
+- Tests for `getData` function
+- Tests for `getDataStream` generator
+- Data validation tests
+
+### Component Tests
+
+Located in `apps/next-app/src/components/*.spec.tsx`:
+
+- React Testing Library tests
+- User interaction tests
+- Accessibility tests
+- State management tests
+
+## Deployment
+
+### Build Scripts
+
+The project includes build scripts in `package.json`:
+
+- `build`: Build all projects
+- `build:next-app`: Build Next.js app
+- `build:shared-data`: Build shared-data library
+- `build:file-management`: Build file-management library
+
+### Production Server
+
+After building, you can run the production server locally:
+
+```bash
+npm run start:next-app:prod
+```
+
+This will start the production server on port 4000. Visit <http://localhost:4000>
+
+## Technologies
+
+- **Nx**: Monorepo tooling
+- **Next.js**: React framework
+- **TypeScript**: Type safety
+- **@tanstack/react-virtual**: Virtualization
+- **Jest**: Testing framework
+- **React Testing Library**: Component testing
+
+## License
+
+MIT
