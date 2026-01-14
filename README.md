@@ -62,7 +62,7 @@ npm run build:shared-data
 npm run build:file-management
 ```
 
-### Production Server
+### Running Production Server
 
 After building, you can run the production server on a different port:
 
@@ -112,6 +112,14 @@ When the viewport is narrow (mobile or resized desktop window):
 
 - **Sticky checkbox column**: The first column (selection checkbox) stays fixed while scrolling horizontally.
 - **Horizontal scrolling for other columns**: The remaining columns can be scrolled laterally to view all content without breaking the layout.
+
+### Browser Compatibility
+
+This application has been tested on the following platforms and browsers:
+
+- **macOS**: Chrome, Safari, Firefox
+- **Windows**: Chrome, Edge
+- **iPhone**: Chrome, Safari
 
 ## Architecture
 
@@ -165,7 +173,7 @@ All use cases are:
 - **Maintainability**: Business rules are centralized in one place
 - **Separation of Concerns**: Clear boundaries between layers
 
-## Testing
+## Testing Strategy
 
 ### Business Logic Tests
 
@@ -201,7 +209,7 @@ The project includes build scripts in `package.json`:
 - `build:shared-data`: Build shared-data library
 - `build:file-management`: Build file-management library
 
-### Production Server
+### Running Production Build
 
 After building, you can run the production server locally:
 
