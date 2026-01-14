@@ -1,15 +1,10 @@
 'use client';
 
-import { useState, useRef, useCallback, useMemo } from 'react';
+import { useRef, useCallback } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { FileItem } from '@monorepo-app/shared-data';
-import {
-  getAvailableItems,
-  getSelectionState,
-  selectAllAvailable,
-  toggleItemSelection,
-  formatSelectedForDownload,
-} from '@monorepo-app/file-management';
+import { formatSelectedForDownload } from '@monorepo-app/file-management';
+import { useSelection } from '../hooks/useSelection';
 import { SelectAllControl } from './SelectAllControl';
 import { DownloadSelectedButton } from './DownloadSelectedButton';
 import { TableHeader } from './TableHeader';
@@ -26,29 +21,16 @@ interface FileTableProps {
 }
 
 export function FileTable({ data, loading, error }: FileTableProps) {
-  const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
   const parentRef = useRef<HTMLDivElement>(null);
 
-  const availableItems = useMemo(() => getAvailableItems(data), [data]);
-
-  const { allAvailableSelected, someAvailableSelected, selectedCount } =
-    useMemo(
-      () => getSelectionState(availableItems, selectedItems),
-      [availableItems, selectedItems],
-    );
-
-  const handleSelectAll = useCallback(() => {
-    const newSelection = selectAllAvailable(
-      availableItems,
-      allAvailableSelected,
-    );
-
-    setSelectedItems(newSelection);
-  }, [allAvailableSelected, availableItems]);
-
-  const handleItemSelect = useCallback((path: string, isAvailable: boolean) => {
-    setSelectedItems((prev) => toggleItemSelection(prev, path, isAvailable));
-  }, []);
+  const {
+    selectedItems,
+    allAvailableSelected,
+    someAvailableSelected,
+    selectedCount,
+    handleSelectAll,
+    handleItemSelect,
+  } = useSelection(data);
 
   const handleDownload = useCallback(() => {
     const message = formatSelectedForDownload(data, selectedItems);
