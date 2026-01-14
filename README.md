@@ -106,6 +106,13 @@ The application features:
 - **States**: Loading, error, and empty states with proper ARIA attributes
 - **Accessibility**: Full keyboard navigation, screen reader support, proper ARIA labels
 
+### Responsive table behavior
+
+When the viewport is narrow (mobile or resized desktop window):
+
+- **Sticky checkbox column**: The first column (selection checkbox) stays fixed while scrolling horizontally.
+- **Horizontal scrolling for other columns**: The remaining columns can be scrolled laterally to view all content without breaking the layout.
+
 ## Architecture
 
 ### Clean Architecture Layers
