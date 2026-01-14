@@ -14,17 +14,15 @@ export function DownloadSelectedButton({
   const isDisabled = selectedCount === 0;
 
   return (
-    <a
-      onClick={(e) => {
-        e.preventDefault();
+    <button
+      onClick={() => {
         if (!isDisabled) {
           onDownload();
         }
       }}
+      disabled={isDisabled}
       className={`${styles.downloadLink} ${isDisabled ? styles.disabled : ''}`}
       aria-label={`Download ${selectedCount} selected item${selectedCount !== 1 ? 's' : ''}`}
-      role="button"
-      tabIndex={isDisabled ? -1 : 0}
     >
       <svg
         width="16"
@@ -50,6 +48,6 @@ export function DownloadSelectedButton({
         />
       </svg>
       Download Selected
-    </a>
+    </button>
   );
 }

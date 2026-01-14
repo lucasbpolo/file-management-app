@@ -41,6 +41,7 @@ describe('FileTable', () => {
     render(<FileTable data={[]} loading={true} />);
 
     const loadingContainer = screen.getByRole('status');
+
     expect(loadingContainer).toBeInTheDocument();
     expect(loadingContainer.querySelector('.spinner')).toBeInTheDocument();
   });
@@ -133,24 +134,24 @@ describe('FileTable', () => {
     render(<FileTable data={mockData} loading={false} />);
 
     const checkboxes = screen.getAllByRole('checkbox');
+
     fireEvent.click(checkboxes[1]);
 
-    const downloadLink = screen.getByText('Download Selected').closest('a');
-    if (downloadLink) {
-      fireEvent.click(downloadLink);
-    }
+    const downloadButton = screen.getByText('Download Selected');
+
+    fireEvent.click(downloadButton);
 
     expect(alertSpy).toHaveBeenCalled();
 
     alertSpy.mockRestore();
   });
 
-  it('should disable download link when no items are selected', () => {
+  it('should disable download button when no items are selected', () => {
     render(<FileTable data={mockData} loading={false} />);
 
-    const downloadLink = screen.getByText('Download Selected').closest('a');
+    const downloadButton = screen.getByText('Download Selected');
 
-    expect(downloadLink).toHaveClass('downloadLink', 'disabled');
-    expect(downloadLink).toHaveAttribute('tabIndex', '-1');
+    expect(downloadButton).toBeDisabled();
+    expect(downloadButton).toHaveClass('downloadLink', 'disabled');
   });
 });

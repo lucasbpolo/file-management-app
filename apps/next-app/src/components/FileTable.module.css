@@ -49,16 +49,17 @@
   font-weight: 500;
   text-decoration: none;
   transition: background-color 0.2s;
+  font-family: inherit;
 }
 
-.downloadLink:hover:not(.disabled) {
+.downloadLink:hover:not(:disabled) {
   background-color: #0051cc;
 }
 
-.downloadLink.disabled {
+.downloadLink:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-  pointer-events: none;
+  opacity: 0.6;
 }
 
 .downloadIcon {
