@@ -22,7 +22,6 @@ A clean architecture implementation using Nx with shared business logic consumed
 - **Streaming Data**: Server-sent events for efficient data loading
 - **Virtualized Tables**: High-performance rendering of hundreds of items
 - **Accessibility**: Full ARIA support and keyboard navigation
-- **Smart Selection**: Select-all with indeterminate state, disabled checkboxes for unavailable items
 - **Comprehensive Testing**: Unit tests for business logic and React components
 - **Separation of Concerns**: Business logic is framework-agnostic and reusable
 
@@ -32,7 +31,6 @@ A clean architecture implementation using Nx with shared business logic consumed
 
 - Node.js 20+ (recommended) or >= 18.17.0
 - npm
-- nvm (Node Version Manager) - if you have multiple Node.js versions
 
 ### Installation
 
@@ -102,24 +100,11 @@ The application features:
 - **Streaming Data**: Data loads incrementally via server-sent events
 - **Selection Controls**:
   - Individual checkboxes for each row (only available items can be selected)
-  - Select-all checkbox with indeterminate state
+  - Select-all / Unselect-all checkbox
   - Selection count display
 - **Download Button**: Shows alert with path and device of selected items
 - **States**: Loading, error, and empty states with proper ARIA attributes
 - **Accessibility**: Full keyboard navigation, screen reader support, proper ARIA labels
-
-### Requirements Met
-
-✅ Only items with "available" status can be selected  
-✅ Select-all checkbox shows unselected/selected/indeterminate states  
-✅ Selection count updates dynamically  
-✅ Clicking select-all toggles all available items  
-✅ Download button shows alert with selected items' path and device  
-✅ Status correctly formatted  
-✅ Rows change color on selection and hover  
-✅ Virtualized list for performance  
-✅ Streaming data loading  
-✅ Comprehensive accessibility features
 
 ## Architecture
 
@@ -228,6 +213,6 @@ This will start the production server on port 4000. Visit <http://localhost:4000
 - **Jest**: Testing framework
 - **React Testing Library**: Component testing
 
-## License
+## Vercel Deployment
 
-MIT
+The app is deployed to Vercel. Visit <https://file-management-app-henna.vercel.app/>
