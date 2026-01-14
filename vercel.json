@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd ../.. && npx nx build next-app",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "installCommand": "cd ../.. && npm install --legacy-peer-deps",
+  "rootDirectory": "apps/next-app"
+}
